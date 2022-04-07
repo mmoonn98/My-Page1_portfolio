@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+    <!--뷰티파이 디자인 링크-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8b527914f9.js" crossorigin="anonymous"></script>
+
+    <!--뷰와 뷰티파이를 사용하기위한 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+</head>
+
+    <style>
+        *{
+            list-style: none;
+            text-decoration: none;
+            border-collapse: collapse; /*테이블 선 따로 떨어져있는거 붙여주기*/
+            margin: 0px;    /*기본적으로 신겨져있는 마진,패딩값 죽이기*/
+            padding: 0px;
+            color: white;
+        }
+
+        .intro_bg {
+            background-image:url("img/bg.1.jpg");
+            width: 100%;
+            height: 718px;
+        }
+
+        .header {
+            display:flex; 
+            width: 1280px;
+            margin: auto;
+            height: 86px;
+        }
+
+        .header > p {
+            margin: 10px;
+            padding-right: 4px;
+            padding-top: 10px;
+            font-size: 30px;
+        }
+
+        .nav{
+            display: flex; /* 가로로 정렬*/
+            justify-content: flex-end;
+            line-height: 86px;
+            width: calc(1280px-300px);
+            color: #fff;
+        }
+
+        .nav > li{
+            margin-left: 84px;
+        }
+        .searchArea{
+            width: 300px;
+            height: 40px;
+            background-color:rgb(241, 244, 247);
+            border-radius: 5px;
+            margin-top: 24px;
+        }
+        .searchArea>form>input {
+            border: none;
+            width: 250px;
+            height: 40px;
+            background: rgba(0,0,0,0);  /* 배경 없애기*/
+            color: #ffff;
+            padding-left: 20px;
+        }
+
+        .searchArea>form>span {
+            width: 50px;
+            color:black;
+            font-weight: bold;
+            cursor: pointer;  /*커서 포인트 모양 바꿔주기*/
+        }
+
+        .intro_text { 
+            width: 100%;
+            margin-left: 50px;
+        }
+
+        .intro_text > p {
+            font-size: 50px;
+            margin: 60px;
+            padding: 20px;
+            padding-top: 50px;
+            color: rgb(255, 255, 255);
+            font-weight: 800;
+        }
+
+        .intro_text > h2 {
+            margin: 60px;
+            padding: 20px;
+            padding-top: 0px;
+            color: rgb(243, 239, 233);
+            font-weight: 600;
+        }
+
+        .intro_text > h1 {
+            margin: 60px;
+            padding: 20px;
+            padding-top: 0px;
+        }
+
+        .h_box {
+            position: relative;
+            top: -66px;
+            display: flex;
+            width: 1280px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);  /* 우측 하단 확산정도 색상*/
+            margin: auto;
+        }
+
+        .h_box > li > div {
+            text-align: center;
+            margin-top: 37px;
+            height: 57px;
+        }
+        
+        .h_box > li:not(:last-child) > div{
+            border-right: 1px solid gray;  /* li의 마지막 div의 border만 제외하겠다 */
+        }
+
+        .h_box > li {
+            flex: 1;
+            height: 132px;
+        }
+
+        .contents1 {
+            font-size: 20px;
+            font-weight: lighter;
+            color: black;
+        }
+
+        .contents2{
+            font-size: 24px;
+            color: black;
+        }
+
+        .main {
+            width: 100%;
+            height: 600px;
+            margin-top: -132px;
+            background-color: #f3ece6;
+        }
+
+        .mains {
+            width: 100%;
+            height: 600px;
+            background-color: #c7c2c2;
+            margin-top: -100px;
+        }
+
+        .main > h1 {
+            color: rgb(146, 62, 51);
+            padding-top: 110px;
+            text-align: center;
+        }
+
+        .main > h4 {
+            color: rgb(182, 101, 63);
+            padding-top: 20px;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        .package_card {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                    <p class="Font"><i class="fa-solid fa-plane"></i></p>
+                    <p class="h.title">Trip</p>
+                <div class="searchArea">
+                    <form> <!--input type은 form 형식으로 감싸줘야함-->
+                    <input type="search" placeholder="Search">
+                    <span>검색</span>
+                    </form>
+                </div>
+                <ul class="nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">국내/해외</a></li>
+                    <li><a href="#">인기여행</a></li>
+                    <li><a href="#">여행상품</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+            </div>
+            <div class="intro_text">
+            <p>나만의 여행 플래너 Trip
+                <br>
+                WHERE NEXT?
+            </p>
+            <h1>ALL TOURS FOR YOU</h1>
+            <h2>어디로 떠날까요?</h2>
+            </div>
+        </div>
+        <ul class="h_box">
+            <li>
+                <div>
+                    <div class="contents2">Popular Destinations</div>
+                    <div class="contents1">Paris | Rome | Santorini</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents2">홈페이지 방문객 수</div>
+                    <div class="contents1">981123명</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents2">진행중인 할인 이벤트</div>
+                    <div class="contents1">13개</div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class="contents2">TOUR PACKAGE 상품</div>
+                    <div class="contents1">4개</div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="main">
+            <h1>TOUR PACKAGE</h1>
+            <h4>미리 준비하는 국내/해외 여행! TOUR+HOTEL</h4>
+
+            <div id="app">
+            <div class="main_cardlist">
+            <v-content>
+                <v-container>
+                    <v-row>
+                        <v-col sm="3">
+                            <v-card class="package_card">
+                                <v-img class="img_size" src=
+                                "https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" 
+                                aspect-ratio="1.2"></v-img>
+                                <v-card-title>PARIS</v-card-title>
+                                <v-card-text>
+                                    dfdf
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+                        <v-col sm="3">
+                            <!-- 카드UI 사용을 위한 v-card-->
+                            <v-card class="package_card">
+                                <v-img src=
+                                "https://cdn.pixabay.com/photo/2019/10/12/15/28/the-coliseum-4544105_960_720.jpg"
+                                aspect-ratio="1.2"></v-img>
+                                <v-card-text>
+                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
+                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+
+                        <v-col sm="3">
+                            <!-- 카드UI 사용을 위한 v-card-->
+                            <v-card class="package_card">
+                                <v-img src="https://cdn.pixabay.com/photo/2020/04/02/22/09/santorini-4996846_960_720.jpg"
+                                aspect-ratio="1.2"></v-img>
+                                <v-card-text>
+                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
+                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+
+                        <v-col sm="3">
+                            <!-- 카드UI 사용을 위한 v-card-->
+                            <v-card class="package_card">
+                                <v-img src="https://cdn.pixabay.com/photo/2017/08/10/08/39/three-2620056_960_720.jpg"
+                                aspect-ratio="1.2"></v-img>
+                                <v-card-text>
+                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
+                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
+                                </v-card-text>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-content>
+            <div class="mains"></div>
+    </div>
+    </div>
+        </div>
+
+    
+
+    <script>
+        new Vue({
+            el:"#app",
+            vuetify : new Vuetify()
+        })
+    </script>
+</body>
+</html>
