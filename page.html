@@ -12,6 +12,7 @@
     crossorigin="anonymous"></script>
 
     <!--뷰티파이 디자인 링크-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
@@ -21,169 +22,994 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
+    <!--제이쿼리-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 </head>
 
     <style>
-        *{
-            list-style: none;
-            text-decoration: none;
-            border-collapse: collapse; /*테이블 선 따로 떨어져있는거 붙여주기*/
-            margin: 0px;    /*기본적으로 신겨져있는 마진,패딩값 죽이기*/
-            padding: 0px;
-            color: white;
-        }
+    * {
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    /*테이블 선 따로 떨어져있는거 붙여주기*/
+    margin: 0px;
+    /*기본적으로 신겨져있는 마진,패딩값 죽이기*/
+    padding: 0px;
+    color: white;
+}
 
-        .intro_bg {
-            background-image:url("img/bg.1.jpg");
-            width: 100%;
-            height: 718px;
-        }
+a#topBtn {
+    position: fixed;
+    /* 포지션 고정 */
+    right: 2%;
+    /* 오른쪽에서 2% - %도 할수 있음*/
+    bottom: 200px;
+    /* 밑에서 5px */
+    display: none;
+    /* 보여지지 없음 - 기본적으로 안보여지게 */
+    z-index: 9999;
+    /* 포지션을 먼저 지정후 z-좌표(레이어) : 9999입니다. */
+}
 
-        .header {
-            display:flex; 
-            width: 1280px;
-            margin: auto;
-            height: 86px;
-        }
+.topT {
+    border: 1px solid rgb(116, 116, 116);
+    background-color: rgb(255, 246, 246);
+    padding: 20px;
+    color: black;
+    border-radius: 0.4em;
+}
 
-        .header > p {
-            margin: 10px;
-            padding-right: 4px;
-            padding-top: 10px;
-            font-size: 30px;
-        }
+.intro_bg {
+    background-image: url("img/bg.1.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 718px;
+}
 
-        .nav{
-            display: flex; /* 가로로 정렬*/
-            justify-content: flex-end;
-            line-height: 86px;
-            width: calc(1280px-300px);
-            color: #fff;
-        }
+.header {
+    display: flex;
+    width: 1280px;
+    margin: auto;
+    height: 86px;
+}
 
-        .nav > li{
-            margin-left: 84px;
-        }
-        .searchArea{
-            width: 300px;
-            height: 40px;
-            background-color:rgb(241, 244, 247);
-            border-radius: 5px;
-            margin-top: 24px;
-        }
-        .searchArea>form>input {
-            border: none;
-            width: 250px;
-            height: 40px;
-            background: rgba(0,0,0,0);  /* 배경 없애기*/
-            color: #ffff;
-            padding-left: 20px;
-        }
+.header>p {
+    margin: 10px;
+    padding-right: 4px;
+    padding-top: 10px;
+    font-size: 30px;
+}
 
-        .searchArea>form>span {
-            width: 50px;
-            color:black;
-            font-weight: bold;
-            cursor: pointer;  /*커서 포인트 모양 바꿔주기*/
-        }
+.nav {
+    display: flex;
+    /* 가로로 정렬*/
+    justify-content: flex-end;
+    line-height: 86px;
+    width: calc(1280px-300px);
+    color: #fff;
+}
 
-        .intro_text { 
-            width: 100%;
-            margin-left: 50px;
-        }
+.nav>li :hover {
+    background-color: rgb(102, 132, 158);
+}
 
-        .intro_text > p {
-            font-size: 50px;
-            margin: 60px;
-            padding: 20px;
-            padding-top: 50px;
-            color: rgb(255, 255, 255);
-            font-weight: 800;
-        }
+.nav>li {
+    margin-left: 84px;
+}
 
-        .intro_text > h2 {
-            margin: 60px;
-            padding: 20px;
-            padding-top: 0px;
-            color: rgb(243, 239, 233);
-            font-weight: 600;
-        }
+.searchArea {
+    width: 340px;
+    height: 40px;
+    background-color: rgb(241, 244, 247);
+    border-radius: 5px;
+    margin-top: 24px;
+}
 
-        .intro_text > h1 {
-            margin: 60px;
-            padding: 20px;
-            padding-top: 0px;
-        }
+.searchArea>form>input {
+    border: none;
+    width: 260px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0);
+    /* 배경 없애기*/
+    color: black;
+    padding-left: 20px;
+}
 
-        .h_box {
-            position: relative;
-            top: -66px;
-            display: flex;
-            width: 1280px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);  /* 우측 하단 확산정도 색상*/
-            margin: auto;
-        }
+.searchArea>form>span {
+    width: 50px;
+    color: rgb(112, 93, 93);
+    margin-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    /*커서 포인트 모양 바꿔주기*/
+}
 
-        .h_box > li > div {
-            text-align: center;
-            margin-top: 37px;
-            height: 57px;
-        }
-        
-        .h_box > li:not(:last-child) > div{
-            border-right: 1px solid gray;  /* li의 마지막 div의 border만 제외하겠다 */
-        }
+.intro_text {
+    width: 1280px;
+    margin-left: 410px;
+}
 
-        .h_box > li {
-            flex: 1;
-            height: 132px;
-        }
+.intro_text>p {
+    font-size: 50px;
+    margin: 60px;
+    padding: 20px;
+    padding-top: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+}
 
-        .contents1 {
-            font-size: 20px;
-            font-weight: lighter;
-            color: black;
-        }
+.intro_text>h2 {
+    margin: 60px;
+    padding: 20px;
+    padding-top: 0px;
+    color: rgb(243, 239, 233);
+    font-weight: 600;
+}
 
-        .contents2{
-            font-size: 24px;
-            color: black;
-        }
+.intro_text>h1 {
+    margin: 60px;
+    padding: 20px;
+    padding-top: 0px;
+}
 
-        .main {
-            width: 100%;
-            height: 600px;
-            margin-top: -132px;
-            background-color: #f3ece6;
-        }
+.h_box {
+    position: relative;
+    top: -66px;
+    display: flex;
+    width: 1280px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    /* 우측 하단 확산정도 색상*/
+    margin: auto;
+}
 
-        .mains {
-            width: 100%;
-            height: 600px;
-            background-color: #c7c2c2;
-            margin-top: -100px;
-        }
+.h_box>li>div {
+    text-align: center;
+    margin-top: 37px;
+    height: 57px;
+}
 
-        .main > h1 {
-            color: rgb(146, 62, 51);
-            padding-top: 110px;
-            text-align: center;
-        }
+.h_box>li:not(:last-child)>div {
+    border-right: 1px solid gray;
+    /* li의 마지막 div의 border만 제외하겠다 */
+}
 
-        .main > h4 {
-            color: rgb(182, 101, 63);
-            padding-top: 20px;
-            text-align: center;
-            padding-bottom: 30px;
-        }
+.h_box>li {
+    flex: 1;
+    height: 132px;
+}
 
-        .package_card {
-            width: 500px;
-            height: 500px;
-        }
+.contents1 {
+    font-size: 20px;
+    font-weight: lighter;
+    color: black;
+}
+
+.contents2 {
+    font-size: 24px;
+    color: black;
+}
+
+.main {
+    width: 100%;
+    height: 600px;
+    margin-top: -132px;
+    background-color: #f3ece6;
+}
+
+.main>h1 {
+    color: rgb(146, 62, 51);
+    padding-top: 110px;
+    text-align: center;
+}
+
+.main>h4 {
+    color: rgb(182, 101, 63);
+    padding-top: 20px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.mains>h1 {
+    color: rgb(146, 62, 51);
+    padding-top: 170px;
+    text-align: center;
+}
+
+.mains>h4 {
+    color: rgb(182, 101, 63);
+    padding-top: 16px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.package_card {
+    width: 100%;
+    height: 100%;
+}
+
+.body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.slider {
+    margin-left: 1155px;
+    margin-top: -545px;
+    width: 605px;
+    height: 360px;
+    border: 3px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.slides {
+    width: 500%;
+    height: 360px;
+    display: flex;
+}
+
+.slides input {
+    display: none;
+}
+
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+
+.slide img {
+    width: 655px;
+    height: 360px;
+}
+
+.slideText1 {
+    margin-top: -300px;
+    margin-left: 40px;
+}
+
+.slideText1>p {
+    font-size: 25px;
+}
+
+/*css 메뉴얼 슬라이드 네비게이션 */
+.navigation-manual {
+    position: absolute;
+    width: 655px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn {
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+    margin-right: 30px;
+}
+
+.manual-btn:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+#radio1:checked~.first {
+    margin-left: 0;
+}
+
+#radio2:checked~.first {
+    margin-left: -20%;
+}
+
+#radio3:checked~.first {
+    margin-left: -40%;
+}
+
+#radio4:checked~.first {
+    margin-left: -60%;
+}
+
+/*css 메뉴얼 오토 네비게이션 */
+.navigation-auto {
+    position: absolute;
+    display: flex;
+    width: 605px;
+    justify-content: center;
+    margin-top: 320px;
+}
+
+.navigation-auto div {
+    border: 2px solid rgb(201, 223, 255);
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.navigation-auto div:not(:last-child) {
+    margin-right: 40px;
+}
+
+#radio1:checked~.navigation-auto.auto-btn1 {
+    background: black;
+}
+
+#radio1:checked~.navigation-auto.auto-btn2 {
+    background: black;
+}
+
+#radio1:checked~.navigation-auto.auto-btn3 {
+    background: black;
+}
+
+#radio1:checked~.navigation-auto.auto-btn4 {
+    background: black;
+}
+
+/* 미니 슬라이드 */
+
+.section {
+    width: 603px;
+    height: 200px;
+    margin-top: 70px;
+    margin-left: 1155px;
+}
+
+.section input[id*="slide"] {
+    display: none;
+}
+
+.section .slidewrap {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 225px;
+    border-radius: 1em;
+    margin-top: -55px;
+    overflow: hidden;
+}
+
+.section .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.section .slidelist>li {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .5s;
+}
+
+.section .slidelist>li>a {
+    display: block;
+    position: relative;
+    margin-top: -80px;
+}
+
+.section .slidelist>li>a img {
+    width: 100%;
+}
+
+.section .slidelist label {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+
+.section .slidelist .left {
+    left: 10px;
+    margin-top: -5px;
+    background: url(./img/left.png) center center / 100% no-repeat;
+}
+
+.section .slidelist .right {
+    right: 10px;
+    margin-top: -5px;
+    background: url(./img/right.png) center center / 100% no-repeat;
+}
+
+.section [id="slide01"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(0%);
+}
+
+.section [id="slide02"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(-100%);
+}
+
+.section [id="slide03"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(-200%);
+}
+
+
+.p_textC {
+    color: black;
+}
+
+.p_textT {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: black;
+}
+
+.p_textT1 {
+    color: black;
+    font-size: 12px;
+}
+
+.star {
+    margin-left: 10px;
+}
+
+.cardbtn {
+    margin-top: 5px;
+    margin-right: 15px;
+    margin-bottom: 6px;
+}
+
+.mains {
+    width: 100%;
+    height: 1100px;
+    background-color: #f3ece6;
+    margin-top: -130px;
+}
+
+.contentsI {
+    border-radius: 20px;
+    border: solid 4px white;
+    position: relative;
+    margin-top: -800px;
+    margin-left: 390px;
+    width: 1100px;
+    height: 600px;
+    background-image: url(https://cdn.pixabay.com/photo/2020/08/09/15/44/tower-5475850_960_720.jpg);
+    background-size: cover;
+    margin-bottom: 150px;
+}
+
+.imgBox {
+    display: flex;
+    color: rgb(212, 222, 236);
+    margin-left: 39px;
+    padding-top: 45px;
+    font-size: 30px;
+}
+
+.slogan {
+    margin-left: 39px;
+    padding-top: 367px;
+    font-size: 35px;
+}
+
+.subbox {
+    display: flex;
+    width: 1750px;
+    height: 700px;
+    margin: auto;
+}
+
+.submain {
+    width: 1280px;
+    margin-top: -75px;
+    margin-left: 400px;
+}
+
+.f1 {
+    width: 500px;
+    height: 600px;
+    border-radius: 10px;
+    border: solid 2px white;
+    background: url(https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072_960_720.jpg);
+}
+
+.big_text {
+    font-size: 36px;
+    margin-left: 35px;
+    margin-top: 55px;
+}
+
+.photo_tab {
+    padding-top: 70px;
+    margin-left: 40px;
+}
+
+.inpt_radio {
+    display: none;
+}
+
+.label_radio:hover {
+    background-color: rgb(236, 227, 227);
+}
+
+.label_radio {
+    display: grid;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    background-color: white;
+    border: 7px solid white;
+    margin-right: 230px;
+}
+
+.miniC {
+    position: relative;
+    background-color: white;
+    background-image:
+        url(https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F993F443E5D10D2ED1CFA23);
+    background-size: 330px 250px;
+    box-shadow: 2px 2px 10px gray;
+    width: 330px;
+    height: 450px;
+    margin-top: -630px;
+    margin-left: 380px;
+}
+
+.minibox {
+    position: relative;
+    margin-left: 20px;
+    padding-top: 270px;
+    height: 450px;
+}
+
+.minibox>h5 {
+    color: rgb(105, 97, 97);
+}
+
+.minibox>h3 {
+    color: rgb(0, 0, 0);
+}
+
+.minibox>h4 {
+    color: rgb(68, 58, 58);
+}
+
+.minibox>h2 {
+    color: rgb(0, 0, 0);
+}
+
+.miniC2 {
+    position: relative;
+    background-color: white;
+    background-image: url(https://img.sbs.co.kr/newimg/news/20210615/201561230_1280.jpg);
+    background-size: 330px 250px;
+    box-shadow: 2px 2px 10px gray;
+    width: 330px;
+    height: 450px;
+    margin-top: -450px;
+    margin-left: 730px;
+}
+
+.minibox2 {
+    position: relative;
+    margin-left: 20px;
+    padding-top: 270px;
+    height: 450px;
+}
+
+.minibox2>h5 {
+    color: rgb(105, 97, 97);
+}
+
+.minibox2>h3 {
+    color: rgb(0, 0, 0);
+}
+
+.minibox2>h4 {
+    color: rgb(68, 58, 58);
+}
+
+.minibox2>h2 {
+    color: rgb(0, 0, 0);
+}
+
+.miniC3 {
+    position: relative;
+    background-color: white;
+    background-image: url(https://images.chosun.com/resizer/lavxaYuNI5yeWJUS5vd_OOrfVZ4=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/5MZXSG575I535FYQQQODRKIEEE.jpg);
+    background-size: 330px 250px;
+    box-shadow: 2px 2px 10px gray;
+    width: 330px;
+    height: 450px;
+    margin-top: -450px;
+    margin-left: 1080px;
+}
+
+.minibox3 {
+    position: relative;
+    margin-left: 12px;
+    padding-top: 135px;
+    height: 450px;
+}
+
+.minibox3>h5 {
+    color: rgb(105, 97, 97);
+}
+
+.minibox3>h3 {
+    color: rgb(0, 0, 0);
+}
+
+.minibox3>h4 {
+    color: rgb(68, 58, 58);
+}
+
+.minibox3>h2 {
+    color: rgb(0, 0, 0);
+}
+
+.miniC4 {
+    position: relative;
+    background-color: white;
+    background-image: url(https://i0.wp.com/www.hisour.com/wp-content/uploads/2021/07/Night-tour-of-Venice-Grand-Canal-Italy.jpg?w=960&ssl=1);
+    background-size: 330px 250px;
+    box-shadow: 2px 2px 10px gray;
+    width: 330px;
+    height: 450px;
+    margin-top: -450px;
+    margin-left: 1430px;
+}
+
+.minibox4 {
+    position: relative;
+    margin-left: 20px;
+    padding-top: 270px;
+    height: 450px;
+}
+
+.minibox4>h5 {
+    color: rgb(105, 97, 97);
+}
+
+.minibox4>h3 {
+    color: rgb(0, 0, 0);
+}
+
+.minibox4>h4 {
+    color: rgb(68, 58, 58);
+}
+
+.minibox4>h2 {
+    color: rgb(0, 0, 0);
+}
+
+.lastmain {
+    height: 940px;
+    margin-top: 170px;
+    background-image: url(https://cdn.pixabay.com/photo/2014/08/21/17/42/disney-land-423549_960_720.jpg);
+    background-size: cover;
+}
+
+.lastT {
+    position: relative;
+    top: 50px;
+    margin-left: 400px;
+    width: 900px;
+    font-size: 45px;
+}
+
+.dizland {
+    position: relative;
+    top: 10%;
+    background-color: aqua;
+    margin-left: 400px;
+    width: 1760px;
+    height: 700px;
+}
+
+.leftbox {
+    position: relative;
+    background-color: #fff;
+    width: 620px;
+    height: 700px;
+}
+
+.leftbox>h4 {
+    padding-top: 13px;
+    margin-left: 30px;
+    color: black;
+}
+
+.leftbox>h2 {
+    color: black;
+    padding-top: 20px;
+    line-height: 35px;
+    margin-left: 30px;
+}
+
+.leftbox>h3 {
+    color: black;
+    margin-left: 30px;
+    font-size: 23px;
+}
+
+.youtube {
+    position: relative;
+    background-color: antiquewhite;
+    margin-bottom: 35px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 560px;
+    height: 300px;
+}
+
+.centerbox {
+    position: relative;
+    background-image: url(https://cdn.pixabay.com/photo/2016/11/01/13/20/disneyland-1788216_960_720.jpg);
+    background-position: 30%;
+    background-color: yellow;
+    margin-top: -700px;
+    margin-left: 620px;
+    width: 620px;
+    height: 700px;
+}
+
+.centerInbox {
+    margin-top: 410px;
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 620px;
+    height: 241px;
+}
+
+.headT {
+    padding-top: 30px;
+    margin-left: 40px;
+    color: black;
+}
+
+.centerInbox2 {
+    margin-top: -240px;
+    width: 620px;
+    height: 241px;
+}
+
+.centerH {
+    color: white;
+    margin-top: 25px;
+    margin-left: 40px;
+}
+
+.centerP {
+    color: #ffbbb6;
+    font-size: 19px;
+    padding-top: 20px;
+    margin-left: 40px;
+}
+
+.centerPP {
+    margin-top: 15px;
+    margin-left: 40px;
+}
+
+.rightbox {
+    position: relative;
+    background-color: white;
+    margin-top: -700px;
+    margin-left: 1230px;
+    width: 540px;
+    height: 700px;
+}
+
+.foodtext {
+    color: black;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.foodtext1 {
+    color: rgb(94, 62, 62);
+    margin-left: 30px;
+}
+
+.foodtext11 {
+    color: rgb(158, 108, 108);
+    font-size: 25px;
+    margin-left: 90px;
+    margin-top: -33px;
+}
+
+.foodtext2 {
+    margin-left: 30px;
+    background: linear-gradient(to right top, #c077a0, #f5e9a6);
+    color: transparent;
+    -webkit-background-clip: text;
+    margin-bottom: 18px;
+}
+
+.foodtext22 {
+    color: black;
+    margin-left: 30px;
+    line-height: 30px;
+}
+
+.rightH {
+    color: black;
+    padding-top: 35px;
+    margin-left: 30px;
+}
+
+.circle {
+    position: relative;
+    background-color: rgb(166, 168, 146);
+    margin: auto;
+    padding: auto;
+    margin-left: 110px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+.final {
+    position: relative;
+    margin-top: 100px;
+    background-color: #f8f0e7;
+    top: 180px;
+    width: 100%;
+    height: 550px;
+}
+
+.miniF {
+    position: relative;
+    top: 15%;
+    background-color: #fff;
+    margin-left: 400px;
+    border-top: solid 3px black;
+    width: 1755px;
+    height: 400px;
+}
+
+.calltext {
+    color: black;
+    padding-top: 45px;
+    margin-left: 80px;
+}
+
+.callP {
+    padding-top: 60px;
+    margin-left: 80px;
+    color: black;
+}
+
+.callP2 {
+    margin-top: -200px;
+    margin-left: 450px;
+    color: black;
+}
+
+.calltext2 {
+    color: black;
+    margin-top: 30px;
+    margin-left: 450px;
+}
+
+.calltext3>ul>li {
+    color: black;
+}
+
+.calltext3>ul>li>h2 {
+    color: black;
+}
+
+.calltext3 {
+    margin-top: -290px;
+    margin-left: 900px;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+.material-icons {
+    color: black;
+    font-size: 40px;
+    margin-left: 500px;
+    margin-top: -45px;
+    display: flex;
+    letter-spacing: 40px;
+}
+
+.footer {
+    position: relative;
+    margin-top: 340px;
+    width: 100%;
+    height: 500px;
+}
+
+.top_footer {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: -60px;
+    border-top: 1px solid rgb(187, 172, 156);
+    border-bottom: 1px solid rgb(187, 172, 156);
+}
+
+.footer_nav {
+    display: flex;
+    /* 가로로 정렬*/
+    line-height: 100px;
+    margin-left: 400px;
+}
+
+.footer_nav>li>a {
+    color: black;
+    margin-right: 30px;
+}
+
+.footer_intro {
+    margin-left: -260px;
+    margin-left: 4px;
+}
+
+.footer_intro>ul>li>a {
+    color: black;
+    font-size: small;
+}
+
+.footer_p {
+    color: gray;
+    line-height: 40px;
+    margin-left: 400px;
+    margin-top: 5px;
+}
     </style>
 <body>
+    <div class="top">
+        <a id="topBtn" href="#">
+            <h2 class="topT">TOP</h2>
+        </a>
+    </div>
+    
+
     <div class="wrap">
         <div class="intro_bg">
             <div class="header">
@@ -191,7 +1017,7 @@
                     <p class="h.title">Trip</p>
                 <div class="searchArea">
                     <form> <!--input type은 form 형식으로 감싸줘야함-->
-                    <input type="search" placeholder="Search">
+                    <input type="search" placeholder="오늘의 여행지를 검색해 보세요">
                     <span>검색</span>
                     </form>
                 </div>
@@ -204,12 +1030,12 @@
                 </ul>
             </div>
             <div class="intro_text">
-            <p>나만의 여행 플래너 Trip
+            <p>나만의 여행 플래너 Trip 
                 <br>
                 WHERE NEXT?
             </p>
             <h1>ALL TOURS FOR YOU</h1>
-            <h2>어디로 떠날까요?</h2>
+            <h2>어디로 떠날까요? </h2>
             </div>
         </div>
         <ul class="h_box">
@@ -248,62 +1074,567 @@
             <v-content>
                 <v-container>
                     <v-row>
-                        <v-col sm="3">
+                        <v-col cols="12" sm="3">
                             <v-card class="package_card">
+                                
                                 <v-img class="img_size" src=
                                 "https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" 
                                 aspect-ratio="1.2"></v-img>
-                                <v-card-title>PARIS</v-card-title>
-                                <v-card-text>
-                                    dfdf
-                                </v-card-text>
+                                <v-card-title class="p_textC">PARIS(해외)</v-card-title>
+                                <v-card-text class="p_textT">
+                                    <v-row
+                                align="center"
+                                class="mx-0"
+                                >
+                                <!-- 별 -->
+                                <v-rating class="star"
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                half-increments
+                                readonly
+                                size="16"
+                                ></v-rating>
+
+                                <div class="p_textT">
+                                4.5 (413)
+                                </div>
+                            </v-row>
+
+                            <div class="p_textT">
+                                <br>
+                                $ • 해외,파리
+                            </div>
+
+                            <div class="p_textT1">카르티에 라탱으로도 불리는 파리 5구는 <br>
+                                소르본 대학교와 학생들로 북적이는 카페로 <br>잘 알려져 있습니다.</div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn class="cardbtn" color="red white--text">바로가기</v-btn>
+                            </v-card-actions>
                             </v-card>
                         </v-col>
-                        <v-col sm="3">
+                        <v-col cols="12" sm="3">
                             <!-- 카드UI 사용을 위한 v-card-->
                             <v-card class="package_card">
                                 <v-img src=
                                 "https://cdn.pixabay.com/photo/2019/10/12/15/28/the-coliseum-4544105_960_720.jpg"
                                 aspect-ratio="1.2"></v-img>
-                                <v-card-text>
-                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
-                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
-                                </v-card-text>
+                                <v-card-title class="p_textC">ROME(해외)</v-card-title>
+                                <v-card-text class="p_textT">
+                                    <v-row
+                                align="center"
+                                class="mx-0"
+                                >
+                                <!-- 별 -->
+                                <v-rating class="star"
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                readonly
+                                size="16"
+                                ></v-rating>
+
+                                <div class="p_textT">
+                                4.0 (318)
+                                </div>
+                            </v-row>
+
+                            <div class="p_textT">
+                                <br>
+                                $ • 해외,로마
+                            </div>
+
+                            <div class="p_textT1">
+                                로마는 이탈리아의 수도이자<br>
+                                최대 도시로, 라치오주의 주도이며,<br>
+                                테베레 강 연안에 있습니다다.
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn class="cardbtn" color="red white--text">바로가기</v-btn>
+                            </v-card-actions>
                             </v-card>
                         </v-col>
 
-                        <v-col sm="3">
+                        <v-col cols="12" sm="3">
                             <!-- 카드UI 사용을 위한 v-card-->
                             <v-card class="package_card">
                                 <v-img src="https://cdn.pixabay.com/photo/2020/04/02/22/09/santorini-4996846_960_720.jpg"
                                 aspect-ratio="1.2"></v-img>
-                                <v-card-text>
-                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
-                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
-                                </v-card-text>
+                                <v-card-title class="p_textC">SANTORINI(해외)</v-card-title>
+                                <v-card-text class="p_textT">
+                                    <v-row
+                                align="center"
+                                class="mx-0"
+                                >
+                                <!-- 별 -->
+                                <v-rating class="star"
+                                :value="5"
+                                color="amber"
+                                dense
+                                readonly
+                                size="16"
+                                ></v-rating>
+
+                                <div class="p_textT">
+                                5.0 (718)
+                                </div>
+                            </v-row>
+
+                            <div class="p_textT">
+                                <br>
+                                $ • 해외,산토리니 섬
+                            </div>
+
+                            <div class="p_textT1">
+                                그리스 에게해의섬,산토리니입니다.<br>
+                                아름다운절경과 밤의 유흥덕분에 <br>유럽최고의 관광지로 꼽힙니다.
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn class="cardbtn" color="red white--text">바로가기</v-btn>
+                            </v-card-actions>
                             </v-card>
                         </v-col>
 
-                        <v-col sm="3">
+                        <v-col cols="12" sm="3">
                             <!-- 카드UI 사용을 위한 v-card-->
                             <v-card class="package_card">
                                 <v-img src="https://cdn.pixabay.com/photo/2017/08/10/08/39/three-2620056_960_720.jpg"
                                 aspect-ratio="1.2"></v-img>
-                                <v-card-text>
-                                    <h2 class="title primary--text mb-2"> 시대정신 선도 </h2>
-                                    버추얼 컴퍼니에 관심을 가져주셔서 감사합니다.
-                                </v-card-text>
+                                <v-card-title class="p_textC">JEJU(국내)</v-card-title>
+                                <v-card-text class="p_textT">
+                                    <v-row
+                                align="center"
+                                class="mx-0"
+                                >
+                                <!-- 별 -->
+                                <v-rating class="star"
+                                :value="4.5"
+                                color="amber"
+                                dense
+                                readonly
+                                size="16"
+                                ></v-rating>
+
+                                <div class="p_textT">
+                                    4.5 (638)
+                                </div>
+                            </v-row>
+
+                            <div class="p_textT">
+                                <br>
+                                $ • 국내,제주도
+                            </div>
+
+                            <div class="p_textT1">
+                                산과 오름, 해변, 폭포, 용암동굴, 주변 섬 등 <br>
+                                어디를 가나 천혜의 아름다운 자연 경관들과 <br>
+                                다양한 체험들을 만날 수 있습니다.
+                            </div>
+                            </v-card-text>
+
+                            <v-divider class="mx-4"></v-divider>
+
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn class="cardbtn" color="red white--text">바로가기</v-btn>
+                            </v-card-actions>
                             </v-card>
                         </v-col>
                     </v-row>
                 </v-container>
             </v-content>
-            <div class="mains"></div>
+            <div class="mains">
+                <h1>여행의 발견</h1>
+                <h4>한국인이 뽑은 최고의 명소 + 숙소까지!</h4>
+            </div>
+                <div class="contentsI">
+                    
+                    <ul>
+                        <li>
+                            <div>
+                                <p class="imgBox">[체코_먹고찍고] 체코 프라하여행</p>
+                                <p class="slogan"><a href="#">
+                                    유럽 3대 야경으로 꼽히는 프라하의 아름다운 밤 <br>
+                                    지금 바로 떠나볼까요?</p>
+                                </a> 
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--이미지 슬라이더 시작-->
+                    <div class="slider">
+                        <div class="slides">
+                            <!--라디오 버튼 시작-->
+                            <input type="radio" name="radio-btn" id="radio1">
+                            <input type="radio" name="radio-btn" id="radio2">
+                            <input type="radio" name="radio-btn" id="radio3">
+                            <input type="radio" name="radio-btn" id="radio4">
+                            <!--라디오 버튼 끝-->
+
+                        <!--슬라이드 이미지 시작-->
+                        <div class="slide first">
+                            <img src="./img/00.jpg" alt="">
+                            <div class="slideText1">
+                                <h1>한정 특가 상품!</h1> <br>
+                                <p>안전하게 힐링여행</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="./img/11.jpg" alt="">
+                            <div class="slideText1">
+                                <h1>해외여행 추천지역!</h1> <br>
+                                <p>입국/출국 NO격리</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="./img/22.jpg" alt="">
+                            <div class="slideText1">
+                                <h1>지금 출발가능한 사이판!</h1> <br>
+                                <p>얼리버드 혜택</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="./img/33.jpg" alt="">
+                            <div class="slideText1">
+                                <h1>인기 여행지 따라잡기!</h1> <br>
+                                <p>가성비 끝판왕</p>
+                            </div>
+                        </div>
+                        <!--슬라이드 이미지 끝-->
+
+                        <!--네비게이션 시작-->
+                        <div class="navigation-auto">
+                            <div class="auto-btn1"></div>
+                            <div class="auto-btn2"></div>
+                            <div class="auto-btn3"></div>
+                            <div class="auto-btn4"></div>
+                        </div>
+                        <!--네비게이션 끝-->
+                        
+                        <!--메뉴얼 네비게이션 시작-->
+                        <div class="navugation-manual">
+                            <label for="radio1" class="manual-btn"></label>
+                            <label for="radio2" class="manual-btn"></label>
+                            <label for="radio3" class="manual-btn"></label>
+                            <label for="radio4" class="manual-btn"></label>
+                        </div>
+                    </div>
+                </div>
+
+                    <!--미니 슬라이드-->
+
+                    <div class="section">
+                        <input type="radio" name="slide" id="slide01" checked>
+                        <input type="radio" name="slide" id="slide02">
+                        <input type="radio" name="slide" id="slide03">
+
+                        <div class="slidewrap">
+                            <ul class="slidelist">
+                                <li>
+                                    <a>
+                                        <label for="slide03" class="left"></label>
+                                        <img src="./img/rock-7118843_1280.jpg">
+                                        
+                                        <label for="slide02" class="right"></label>
+                                    </a>
+                                    
+                                </li>
+
+                                <li>
+                                    <a>
+                                        <label for="slide01" class="left"></label>
+                                        <img src="./img/travel-5219496_640.jpg">
+                                        <label for="slide03" class="right"></label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <label for="slide02" class="left"></label>
+                                        <img src="./img/maldives-1993704_640.jpg">
+                                        <label for="slide01" class="right"></label>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="submain">
+                <div class="subbox">
+                    <div class="f1">
+                        <div>
+                            <h1 class="big_text">
+                            이제 떠나볼까 <br>
+                            자가격리 없는 <br>
+                            해외여행
+                            </h1>
+                        </div>
+                        <div class="photo_tab">
+                            <span>
+                                <input type="radio" id="자자연의 환상,그랜드캐년으로"
+                                    name="tab_prod" class="inpt_radio">
+                                <label for="자연의 환상,그랜드캐년으로" class="label_radio"
+                                    style="cursor: pointer;">
+                                    자연의 환상,그랜드캐년으로</label>
+                            </span>
+                            <br>
+                            <br>
+                            <span>
+                                <input type="radio" id="플로리다 올랜도,디즈니랜드"
+                                    name="tab_prod" class="inpt_radio">
+                                <label for="플로리다 올랜도,디즈니랜드" class="label_radio"
+                                    style="cursor: pointer;">
+                                    플로리다 올랜도,디즈니랜드</label>
+                            </span>
+                            <br>
+                            <br>
+                            <span>
+                                <input type="radio" id="영원한 사랑 노래 , 타지마할"
+                                    name="tab_prod" class="inpt_radio">
+                                <label for="영원한 사랑 노래 , 타지마할" class="label_radio"
+                                    style="cursor: pointer;">
+                                    영원한 사랑 노래 , 타지마할</label>
+                            </span>
+                            <br>
+                            <br>
+                            <span>
+                                <input type="radio" id="물의 도시 이탈리아 , 베니스"
+                                    name="tab_prod" class="inpt_radio">
+                                <label for="물의 도시 이탈리아 , 베니스" class="label_radio"
+                                    style="cursor: pointer;">
+                                    물의 도시 이탈리아 , 베니스</label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="miniC">
+                    <div class="minibox">
+                        <h5>패키지</h5> <br>
+                    <h3>그랜드캐니언 9/12일 투어 패키지</h3> <br>
+                    <h4>공항 ↔ 호텔 셔틀 포함상품</h4> <br>
+                    <h2>3,210,000원 ~</h2>
+                    </div>
+                </div>
+                <div class="miniC2">
+                    <div class="minibox2">
+                        <h5>패키지</h5> <br>
+                        <h3>디즈니랜드 3박 4일</h3> <br>
+                        <h4>자유이용권 + 호텔 셔틀 포함상품</h4> <br>
+                        <h2>3,310,000원 ~</h2>
+                    </div>
+                </div>
+                <div class="miniC3">
+                    <div class="minibox3">
+                        <div class="minibox3">
+                            <h5>항공 + 숙소</h5> <br>
+                            <h3>타지마할 4,5일</h3> <br>
+                            <h4>공항 ↔ 호텔 셔틀 포함상품</h4> <br>
+                            <h2>2,410,000원 ~</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="miniC4">
+                    <div class="minibox4">
+                        <h5>패키지</h5> <br>
+                        <h3>물의도시 베니스 4,5일</h3> <br>
+                        <h4>공항 + 관광안내 포함상품</h4> <br>
+                        <h2>3,110,000원 ~</h2>
+                    </div>
+                </div>
+            </div>
     </div>
     </div>
+        <div class="lastmain">
+            <div class="lastT">
+            <div>
+                <p>환상을 따라! 디즈니 랜드로 💎</p>
+            </div>
+            </div>
+            <div class="dizland">
+                <div class="leftbox">
+                    <br>
+                    <h4>동영상</h4>
+                    <div class="youtube">
+                        <div>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/rWPoggtrj8U" title="YouTube video player"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                        <h2>꿈과 환상의 나라</h2> <br>
+                        <h3>⭐디즈니랜드⭐에 오신 것을 환영합니다🧜‍♀</h3> <br>
+                        <h4 class="foodtext22">
+                            서로 다른 테마를 가진 2곳의 디즈니 테마파크 '도쿄디즈니랜드'와 <br>
+                            '도쿄디즈니씨',3곳의 디즈니호텔, 리조트 안 이동 시 편리한 <br>
+                            모노레일 등으로 구성된 대규모 테마 리조트입니다.
+                        </h4>
+                </div>
+                <div class="centerbox">
+                    <div>
+                        <h4 class="headT">놀러와요!퍼레이드</h4>
+                        
+                    </div>
+                    <div class="centerInbox"></div>
+                    <div class="centerInbox2">
+                    <h2 class="centerH"><a href="#"> TOKYO 디즈니랜드 퍼레이드</a></h2>
+                        <p class="centerP">
+                            좋아하는 캐릭터의 멋진 공연을 감상하세요 ❤️
+                        </p>
+                        <p class="centerPP">
+                            퍼레이드는 누구나 좋아하는 이벤트입니다. <br>
+                            미키마우스도 퍼레이드를 무척 즐기는 것 같습니다. <br>
+                            퍼레이드가 시작될 때 좋은 자리를 확보할 수 있도록 <br>
+                            공원 지도를 잘 참고하세요!
+                        </p>
+                    </div>
+                </div>
+                <div class="rightbox">
+                    <h4 class="rightH">디즈니 맛집탐방</h4>
+                    <div >
+                        <img class="circle" src=
+                        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc1p940%2FbtqIKrgov22%2FYYprhoqvBC8MvN3YwKZTbk%2Fimg.png">
+                    </div>
+                        <div>
+                            <h2 class="foodtext">디즈니 랜드, 입으로 만끽하다!</h2>
+                            <h2 class="foodtext1">도쿄</h2> 
+                            <P class="foodtext11">TOKYO</P>
+                            <br>
+                            <h1 class="foodtext2">알렌모찌</h1>
+                            <h4 class="foodtext22">
+                                <토이스토리> 외계인 알렌이 생각나는 쫄깃~쫄깃 모찌 떡🍡 안에<br>
+                                는 스트로베리/커스타드/그린티 등 달콤한 아이스크림이 들어있다.<br>
+                                360엔에 3마리 입양 가능!
+                            </h4>
+                        </div>
+                </div>
+            </div>
+            <div class="final">
+                <div class="miniF">
+                    <h1 class="calltext">TRIP<br>
+                        고객센터<br>
+                        1555-1833</h1>
+                    <br>
+                    <p class="callP">
+                        문의사항이나 문제점이 생겼다면 <br>
+                        고객센터로 연락해 주시길 바랍니다. <br><br>
+                        고객센터 운영시간 : 09:00 ~ 18:00
+                    </p>
+                    <h2 class="callP2">코로나로 인한  <br>
+                                운영 및 지연사항 안내</h2>
+                    <p class="calltext2">
+                        현재 코로나로 인하여 <br> 
+                        상황에 따라 변동사항이 있을 수 있습니다. <br><br>
+                        문자로 실시간 지연사항을 알려드리니 <br>
+                        SNS 수신허용으로 바꿔주시길 바랍니다.
+                    </p>
+
+                    <div class="calltext3">
+                        <ul>
+                            <li><h2>실시간 해외항공권/호텔,국내여행,제휴카드 상담</h2></li><br>
+                            <li>평일 09:00~18:00 <br>
+                                (토/일요일 및 공휴일 휴무)</li>
+                        </ul>
+                    <br>
+                        <ul>
+                            <li><h2>국내항공권 문의</h2></li><br>
+                            <li>평일 09:00~18:00 <br>
+                                (주말 및 공휴일 휴무)</li>
+                        </ul>
+                    <br>
+                        <ul>
+                            <li><h2>기업단체 문의</h2></li><br>
+                            <li>https://fdf.dksjdl.com</li>
+                        </ul>
+
+                        <ul class="material-icons">
+                            <li>phone_in_talk</li>
+                            <li>mail</li>
+                            <li>chat</li>
+                            <li>qr_code_scanner</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="top_footer">
+                    <ul class="footer_nav">
+                        <li><a href="#">회사소개</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">여행약관</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#">여행보험</a></li>
+                        <li><a href="#">마케팅제휴문의</a></li>
+                        <li><a href="#">온라인제휴안내</a></li>
+                        <li><a href="#">여행플래너</a></li>
+                        <li><a href="#">대리점개설문의</a></li>
+                    </ul>
+                    </div>
+                    <div class="footer_intro">
+                        <ul class="footer_nav">
+                            <li><a href="#">회사소개 |</a></li>
+                            <li><a href="#">이용약관 |</a></li>
+                            <li><a href="#">개인정보처리방침 |</a></li>
+                            <li><a href="#">여행약관 |</a></li>
+                            <li><a href="#">해외여행자보험 |</a></li>
+                            <li><a href="#">마케팅제휴 |</a></li>
+                            <li><a href="#">공식인증예약센터 검색</a></li>
+                            <br>
+                            </ul>
+                            <p class="footer_p">(주)TRIP대표 : 문지호, 문소연 주소 : (0316121) 부산광역시 남구 대연동 3길 46 <br>
+                            사업자등록번호 : 1245-841-34563 사업자정보확인통신판매업신고번호 : 남구023-1846호관광사업자 등록번호 : 제1393-000006호 <br>
+                            
+                            개인정보 보호책임자 : 이재훈 영업보증보험 : 22억 1천만원 가입팩스: 02-734-0442이메일 : 1534333@hanatour.com고객센터 1577-4244 <br>
+                            ※ 부득이한 사정에 의해 여행일정이 변경되는 경우 사전 동의를 받습니다. <br>
+                            ※ TRIP은 개별 항공권, 단품 및 일부 여행상품에 대하여 통신판매중개자로서 통신판매의 당사자가 아니며 해당상품의 거래정보 및 거래등에 대해 책임을 지지 않습니다. <br>
+                            
+                            COPYRIGHTⓒ TRIPTOUR SERVICE INC. ALL RIGHTS RESERVED</p>
+                        
+                </div>
+                
+            </div>
+        </div>
         </div>
 
-    
+        <script>
+            $(function () { 
+                // 보이기 | 숨기기 
+                $(window).scroll(function() { 
+                    if ($(this).scrollTop() > 200) { 
+                        //250 넘으면 버튼이 보여짐니다. 
+                        $('#topBtn').fadeIn(); } else { $('#topBtn').fadeOut(); } }); 
+                        // 버튼 클릭시 
+                        $("#topBtn").click(function() { 
+                            $('html, body').animate({ scrollTop : 0 // 0 까지 animation 이동합니다. 
+                            }, 400); // 속도 400 
+                            return false; }); });
+
+        </script>
+        
+    <script>
+        var counter = 1;
+        setInterval(function() {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > 4) {
+                counter = 1;
+            }
+        },6000);
+    </script>
 
     <script>
         new Vue({
